@@ -69,11 +69,11 @@
       display:flex; align-items:center; justify-content:space-between;
     }
     .logo {
-      font-family:'Space Grotesk',sans-serif; font-weight:700;
-      font-size:1.3rem; letter-spacing:.18em; color:var(--cream);
-      text-decoration:none;
+      display:flex; align-items:center; text-decoration:none;
+      height:2.2rem;
     }
-    .logo span { color:var(--gold); }
+    .logo svg { height:100%; width:auto; display:block; transition:opacity .3s; }
+    .logo:hover svg { opacity:.8; }
     .nav-d { display:flex; gap:2.5rem; }
     .nav-d a {
       font-size:.72rem; letter-spacing:.18em; text-transform:uppercase;
@@ -661,12 +661,8 @@
       display:flex; flex-wrap:wrap; align-items:center;
       justify-content:space-between; gap:1.5rem;
     }
-    .ftr-name {
-      font-family:'Space Grotesk',sans-serif; font-weight:700;
-      font-size:1.5rem; letter-spacing:.15em; color:var(--cream);
-    }
-    .ftr-name span { color:var(--gold); }
-    .ftr-tag { font-size:.67rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gray); margin-top:.2rem; }
+    .ftr-logo { display:block; height:1.6rem; width:auto; }
+    .ftr-tag { font-size:.67rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gray); margin-top:.5rem; }
     .ftr-mid { font-size:.75rem; color:var(--gray); letter-spacing:.08em; }
     .ftr-copy { font-size:.68rem; color:var(--gray2); }
 
@@ -686,10 +682,27 @@
 </head>
 <body>
 
+<!-- Logo symbol reutilizável -->
+<svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="logo" viewBox="0 0 1244.36 290.7">
+    <path fill="#f2f2f2" d="M357.59,93.69c-12.07,6.84-21.45,16.43-28.15,28.75-2.47,4.54-4.47,9.33-6.03,14.37v-51.37h-67.16v201.08h67.16v-67.16c0-12.6,2.54-24.13,7.64-34.59,5.09-10.46,12.4-18.83,21.92-25.14,9.51-6.29,20.44-9.45,32.78-9.45h21.31v-66.76h-8.85c-15.02,0-28.55,3.42-40.62,10.26"/>
+    <path fill="#f2f2f2" d="M586.31,107.75c-4.29-4.33-9.04-8.21-14.28-11.65-14.08-9.25-30.9-13.87-50.47-13.87-18.5,0-35.53,4.62-51.08,13.87-15.55,9.25-27.89,21.79-37,37.6-9.12,15.82-13.67,33.25-13.67,52.28s4.42,36.8,13.27,52.48c8.85,15.69,21.04,28.15,36.6,37.4,15.55,9.25,32.84,13.87,51.88,13.87s36.4-4.62,50.47-13.87c5.23-3.44,9.99-7.32,14.28-11.65v22.31h59.83V85.45h-59.83v22.31ZM565.04,209.71c-4.16,7.24-10.12,12.94-17.9,17.09-7.78,4.16-16.49,6.23-26.14,6.23-8.85,0-17.03-2.07-24.53-6.23-7.51-4.15-13.34-9.85-17.49-17.09-4.16-7.24-6.23-15.14-6.23-23.73s2.07-16.49,6.23-23.73c4.15-7.24,9.98-12.93,17.49-17.09,7.5-4.15,15.68-6.23,24.53-6.23,9.65,0,18.36,2.08,26.14,6.23,7.77,4.16,13.74,9.85,17.9,17.09,4.15,7.24,6.23,15.15,6.23,23.73s-2.08,16.49-6.23,23.73"/>
+    <rect fill="#f2f2f2" x="667.47" y="85.45" width="67.16" height="201.08"/>
+    <path fill="#f2f2f2" d="M873.9,81.42c-15.55,0-29.43,3.56-41.62,10.66-11.39,6.63-20.43,16.07-27.15,28.3v-34.94h-51.16v201.08h67.16v-91.69c0-10.46,1.94-19.57,5.83-27.35,3.88-7.77,9.11-13.74,15.68-17.9,6.57-4.15,14.01-6.23,22.32-6.23,11.53,0,20.37,3.56,26.54,10.66,6.16,7.11,9.25,17.49,9.25,31.17v101.34h50.76v-115.82c0-27.61-7.04-49.4-21.11-65.35-14.08-15.95-32.91-23.93-56.51-23.93"/>
+    <path fill="#00d200" d="M1003.74,241.54c-3.63-2.15-7.79-3.23-12.46-3.23s-8.87,1.08-12.59,3.23c-3.72,2.15-6.58,5.03-8.56,8.61-1.99,3.59-2.99,7.64-2.99,12.14s.99,8.92,2.99,12.61c1.99,3.69,4.84,6.56,8.56,8.61,3.72,2.05,7.91,3.08,12.59,3.08s8.82-1.02,12.46-3.08c3.63-2.05,6.49-4.92,8.56-8.61,2.08-3.69,3.11-7.89,3.11-12.61s-1.04-8.56-3.11-12.14c-2.08-3.58-4.93-6.46-8.56-8.61"/>
+    <path fill="#f2f2f2" d="M220.03,133.71c-9.12-15.82-21.45-28.35-37-37.6-15.55-9.25-32.58-13.87-51.07-13.87-19.57,0-36.39,4.62-50.47,13.87-5.23,3.44-9.99,7.32-14.28,11.65v-29.63h-34.46C15.24,78.12.94,68.24.04,50.95v235.57h67.16v-22.31c4.29,4.33,9.04,8.21,14.28,11.65,14.08,9.25,30.9,13.87,50.47,13.87s36.33-4.62,51.88-13.87c15.55-9.25,27.75-21.72,36.6-37.4,8.85-15.68,13.27-33.18,13.27-52.48s-4.56-36.46-13.67-52.28M174.17,209.71c-4.16,7.24-9.99,12.94-17.49,17.09-7.51,4.16-15.68,6.23-24.53,6.23-9.65,0-18.37-2.07-26.14-6.23-7.78-4.15-13.74-9.85-17.9-17.09-4.16-7.24-6.23-15.14-6.23-23.73s2.07-16.49,6.23-23.73c4.15-7.24,10.12-12.93,17.9-17.09,7.77-4.15,16.49-6.23,26.14-6.23,8.85,0,17.02,2.08,24.53,6.23,7.5,4.16,13.33,9.85,17.49,17.09,4.15,7.24,6.23,15.15,6.23,23.73s-2.08,16.49-6.23,23.73"/>
+    <path fill="#f2f2f2" d="M32.75,73.12h34.5v-40.38C67.25,14.66,52.59,0,34.5,0H0v40.38C0,58.46,14.66,73.12,32.75,73.12"/>
+    <path fill="#f2f2f2" d="M1024.33,134.66c9.12-15.82,21.45-28.35,37-37.6,15.55-9.25,32.58-13.87,51.07-13.87,19.57,0,36.4,4.62,50.47,13.87,5.23,3.44,9.99,7.32,14.28,11.65v-29.63h34.46c17.51,0,31.81-9.88,32.7-27.17v235.57h-67.16v-22.31c-4.29,4.33-9.05,8.21-14.28,11.65-14.08,9.25-30.9,13.87-50.47,13.87s-36.33-4.62-51.88-13.87c-15.55-9.25-27.75-21.72-36.6-37.4-8.85-15.68-13.27-33.18-13.27-52.48s4.56-36.46,13.67-52.28M1070.19,210.67c4.16,7.24,9.99,12.94,17.49,17.09,7.51,4.16,15.68,6.23,24.53,6.23,9.65,0,18.37-2.07,26.14-6.23,7.78-4.15,13.74-9.85,17.9-17.09,4.16-7.24-6.23-15.14-6.23-23.73s-2.07-16.49-6.23-23.73c-4.15-7.24-10.12-12.93-17.9-17.09-7.77-4.15-16.49-6.23-26.14-6.23-8.85,0-17.02,2.08-24.53,6.23-7.5,4.16-13.33,9.85-17.49,17.09-4.15,7.24-6.23,15.15-6.23,23.73s2.08,16.49,6.23,23.73"/>
+    <path fill="#f2f2f2" d="M1211.61,74.08h-34.5v-40.38c0-18.09,14.66-32.75,32.75-32.75h34.5v40.38c0,18.09-14.66,32.75-32.75,32.75"/>
+  </symbol>
+</svg>
+
 <!-- ═══ HEADER ═══ -->
 <header id="hdr">
   <div class="hdr-i">
-    <a href="#hero" class="logo">BR<span>A</span>IND</a>
+    <a href="#hero" class="logo" aria-label="BRAIND">
+      <svg height="32" viewBox="0 0 1244.36 290.7" aria-hidden="true"><use href="#logo"/></svg>
+    </a>
     <nav class="nav-d">
       <a href="#philosophy">Filosofia</a>
       <a href="#services">Serviços</a>
@@ -709,7 +722,8 @@
     <a href="#cases"      class="ml">Cases</a>
     <a href="#cta"        class="ml mob-cta">Agendar diagnóstico</a>
   </nav>
-  <p style="text-align:center;margin-top:2rem;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gray2);">Onde marcas unem instinto com inteligência.</p>
+  <svg style="display:block;height:1.4rem;width:auto;margin-top:2.5rem;" viewBox="0 0 1244.36 290.7" aria-hidden="true"><use href="#logo"/></svg>
+  <p style="text-align:center;margin-top:1rem;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gray2);">Onde marcas unem instinto com inteligência.</p>
 </div>
 
 <!-- ═══ HERO ═══ -->
@@ -1013,7 +1027,7 @@
   <div class="wrap">
     <div class="ftr">
       <div>
-        <div class="ftr-name">BR<span>A</span>IND</div>
+        <svg class="ftr-logo" viewBox="0 0 1244.36 290.7" aria-label="BRAIND"><use href="#logo"/></svg>
         <div class="ftr-tag">Branding Intelligence</div>
       </div>
       <p class="ftr-mid">Onde marcas unem instinto com inteligência.</p>
